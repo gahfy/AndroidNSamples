@@ -1,0 +1,5 @@
+<resources>
+    <string name="write_toast_label">Entrez un texte et cliquez sur le bouton pour générer un Toast</string>
+    <string name="write_toast">Contenu du toast</string>
+    <string name="button_launch_toast">Toast !</string>
+</resources>
