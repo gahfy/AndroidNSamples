@@ -17,6 +17,8 @@
         </activity>
         <activity android:name=".activities.NotificationsActivity">
         </activity>
+        <receiver android:name=".receivers.LaunchToastReceiver">
+        </receiver>
     </application>
 
 </manifest>

@@ -5,4 +5,5 @@
     <string name="sample_notification">Exemple de notification</string>
 
     <string name="launch_toast_notification_text">Vous pouvez générer un toast</string>
+    <string name="launch_toast_action">Essayez !</string>
 </resources>
