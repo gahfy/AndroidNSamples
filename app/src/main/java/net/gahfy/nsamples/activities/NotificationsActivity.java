@@ -80,7 +80,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         .setContentTitle(getString(R.string.launch_toast_notification_title))
                         .setContentText(getString(R.string.launch_toast_notification_text));
 
-        //if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+        if(Build.VERSION.RELEASE.startsWith("N") || Build.VERSION.RELEASE.startsWith("7")) {
             // We instantiate a RemoteInput. We will be able to retrieved typed text with
             // the key NOTIFICATION_KEY_LAUNCH_TOAST
             RemoteInput remoteInput = new RemoteInput.Builder(NOTIFICATION_KEY_LAUNCH_TOAST)
@@ -98,7 +98,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
             // We finally add the action to the notification Builder
             mBuilder.addAction(action);
-        //}
+        }
 
         // The activity that the notification will redirect to
         Intent resultIntent = new Intent(this, NotificationsActivity.class);
