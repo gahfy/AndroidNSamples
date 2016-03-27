@@ -4,6 +4,10 @@
     <string name="write_toast_label">Type a text and click on the button to launch a Toast</string>
     <string name="write_toast">Content of the toast</string>
     <string name="button_launch_toast">Toast!</string>
+    <string name="sample_notification">Sample notification</string>
 
     <string name="bt_go_to_notifications">Notifications</string>
+
+    <string name="launch_toast_notification_title">Toast</string>
+    <string name="launch_toast_notification_text">You\'re allowed to launch a toast</string>
 </resources>

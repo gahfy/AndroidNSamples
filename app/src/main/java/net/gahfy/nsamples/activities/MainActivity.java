@@ -20,12 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button btGoToNotifications = (Button) findViewById(R.id.bt_go_to_notifications);
 
-        btGoToNotifications.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
-                startActivity(intent);
-            }
-        });
+        if(btGoToNotifications != null)
+            btGoToNotifications.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                    startActivity(intent);
+                }
+            });
     }
 }

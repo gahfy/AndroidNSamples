@@ -2,4 +2,7 @@
     <string name="write_toast_label">Entrez un texte et cliquez sur le bouton pour générer un Toast</string>
     <string name="write_toast">Contenu du toast</string>
     <string name="button_launch_toast">Toast !</string>
+    <string name="sample_notification">Exemple de notification</string>
+
+    <string name="launch_toast_notification_text">Vous pouvez générer un toast</string>
 </resources>
