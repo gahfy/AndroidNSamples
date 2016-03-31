@@ -13,20 +13,11 @@
     <string name="launch_toast_notification_text">You\'re allowed to launch a toast</string>
     <string name="launch_toast_action">Try it now!</string>
 
-    <string name="mail_notification_title">3 new emails</string>
+    <plurals name="mail_notification_title">
+        <item quantity="one">%d new email</item>
+        <item quantity="other">%d new emails</item>
+    </plurals>
 
     <string name="mail_notification_label">Click the button to launch a 3 messages notification</string>
     <string name="bt_notification_mail_text">Notification Email</string>
-
-    <string-array name="mail_senders">
-        <item>First Contact</item>
-        <item>Second Contact</item>
-        <item>Third Contact</item>
-    </string-array>
-
-    <string-array name="mail_preview">
-        <item>Lorem Ipsum</item>
-        <item>Dolor Sit</item>
-        <item>Amet Consectetur</item>
-    </string-array>
 </resources>

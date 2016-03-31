@@ -26,6 +26,13 @@ public class NotificationsActivity extends AppCompatActivity {
     /** The key of the typed text in the RemoteInput */
     public static final String NOTIFICATION_KEY_LAUNCH_TOAST = "toast_content";
 
+    /** The list of emails used in notifications */
+    private static final GahfyMail[] ACTIVITY_MAILS = new GahfyMail[]{
+        new GahfyMail(1, "John Doe", "Call me back", "Lorem ipsum"),
+        new GahfyMail(2, "Foo Bar", "Check it now", "Dolor sit"),
+        new GahfyMail(3, "Gahfy", "News from the blog", "Amet Consectetur")
+    };
+
     /** The identifier of the notification for Toast */
     public static final int NOTIFICATION_ID_LAUNCH_TOAST = 1;
     /** The identifier of the notification for Mails */
@@ -95,8 +102,8 @@ public class NotificationsActivity extends AppCompatActivity {
         Notification.InboxStyle inboxStyle =
                 new Notification.InboxStyle();
         inboxStyle.setBigContentTitle(getString(R.string.mail_notification_title));
-        for (int i=0; i < 3; i++) {
-            inboxStyle.addLine(String.format("%s - %s", getResources().getStringArray(R.array.mail_senders)[i], getResources().getStringArray(R.array.mail_preview)[i]));
+        for (int i=0; i < ACTIVITY_MAILS.length; i++) {
+            inboxStyle.addLine(String.format("%s - %s", ACTIVITY_MAILS[i].sender, ACTIVITY_MAILS[i].subject));
         }
         mBuilder.setStyle(inboxStyle);
 
@@ -176,5 +183,36 @@ public class NotificationsActivity extends AppCompatActivity {
     private PendingIntent getToastBroadcastPendingIntent(){
         Intent intent = new Intent(this, LaunchToastReceiver.class);
         return PendingIntent.getBroadcast(this.getApplicationContext(), 0, intent, 0);
+    }
+
+    /**
+     * This class is the model for emails used in bundled notifications.
+     */
+    static class GahfyMail{
+        /** The unique identifier of the email. */
+        public long id;
+
+        /** The sender of the email. */
+        public String sender;
+
+        /** The subject of the email. */
+        public String subject;
+
+        /** The preview of the email. */
+        public String preview;
+
+        /**
+         * Instantiates a new GahfyMail object.
+         * @param id The unique identifier of the email to set
+         * @param sender The sender of the email to set
+         * @param subject The subject of the email to set
+         * @param preview The preview of the email to set
+         */
+        GahfyMail(long id, String sender, String subject, String preview){
+            this.id = id;
+            this.sender = sender;
+            this.subject = subject;
+            this.preview = preview;
+        }
     }
 }

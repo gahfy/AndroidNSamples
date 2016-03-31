@@ -6,6 +6,9 @@
     <string name="launch_toast_notification_text">Vous pouvez générer un toast</string>
     <string name="launch_toast_action">Essayez !</string>
 
-
+    <plurals name="mail_notification_title">
+        <item quantity="one">%d nouvel email</item>
+        <item quantity="other">%d nouveaux emails</item>
+    </plurals>
     <string name="mail_notification_label">Cliquez sur le bouton pour générer une notification "3 messages"</string>
 </resources>
