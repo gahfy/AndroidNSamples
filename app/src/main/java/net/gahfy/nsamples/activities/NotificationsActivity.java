@@ -28,6 +28,8 @@ public class NotificationsActivity extends AppCompatActivity {
 
     /** The identifier of the notification for Toast */
     public static final int NOTIFICATION_ID_LAUNCH_TOAST = 1;
+    /** The identifier of the notification for Mails */
+    public static final int NOTIFICATION_ID_MAIL = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +42,32 @@ public class NotificationsActivity extends AppCompatActivity {
         // Setting the UI elements in the view
         final EditText txtLaunchToast = (EditText) findViewById(R.id.txt_launch_toast);
         Button btLaunchToast = (Button) findViewById(R.id.bt_launch_toast);
-        Button btLaunchNotification = (Button) findViewById(R.id.bt_launch_notification);
+        Button btLaunchNotificationSendToast = (Button) findViewById(R.id.bt_launch_notification_send_toast);
+        Button btLaunchNotificationEmail = (Button) findViewById(R.id.bt_launch_notification_email);
 
         // Setting the actions of the buttons
         if(btLaunchToast != null)
-        btLaunchToast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(txtLaunchToast != null)
-                    UIUtils.sendShortToast(NotificationsActivity.this, txtLaunchToast.getText().toString());
-            }
-        });
+            btLaunchToast.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(txtLaunchToast != null)
+                        UIUtils.sendShortToast(NotificationsActivity.this, txtLaunchToast.getText().toString());
+                }
+            });
 
-        if(btLaunchNotification != null)
-            btLaunchNotification.setOnClickListener(new View.OnClickListener() {
+        if(btLaunchNotificationSendToast != null)
+            btLaunchNotificationSendToast.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     launchSendToastNotification();
+                }
+            });
+
+        if(btLaunchNotificationEmail != null)
+            btLaunchNotificationEmail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    launchMailNotification();
                 }
             });
     }
@@ -68,10 +79,49 @@ public class NotificationsActivity extends AppCompatActivity {
         // Cancel the notifications
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(NOTIFICATION_ID_LAUNCH_TOAST);
+        notificationManager.cancel(NOTIFICATION_ID_MAIL);
     }
 
     /**
-     * Launches a Notification that redirects to this Activity
+     * Launches a notification to notify the user he received messages.
+     */
+    private void launchMailNotification(){
+        Notification.Builder mBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_mail_white_24dp)
+                .setContentTitle(getString(R.string.mail_notification_title))
+                .setContentText(getString(R.string.mail_notification_title));
+
+        // Builds a multiline notification
+        Notification.InboxStyle inboxStyle =
+                new Notification.InboxStyle();
+        inboxStyle.setBigContentTitle(getString(R.string.mail_notification_title));
+        for (int i=0; i < 3; i++) {
+            inboxStyle.addLine(String.format("%s - %s", getResources().getStringArray(R.array.mail_senders)[i], getResources().getStringArray(R.array.mail_preview)[i]));
+        }
+        mBuilder.setStyle(inboxStyle);
+
+        // The activity that the notification will redirect to
+        Intent resultIntent = new Intent(this, NotificationsActivity.class);
+
+        // The stackbuilder here allow to leave the application when pressing return
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificationsActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        // Finally launching the notification
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(NOTIFICATION_ID_MAIL, UIUtils.buildNotification(mBuilder));
+
+    }
+
+    /**
+     * Launches a Notification to notify the user he's allowed to send a toast
      */
     private void launchSendToastNotification(){
         Notification.Builder mBuilder =

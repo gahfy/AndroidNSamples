@@ -29,9 +29,29 @@
         android:layout_height="wrap_content"
         android:text="@string/button_launch_toast" />
     <Button
-        android:id="@+id/bt_launch_notification"
+        android:id="@+id/bt_launch_notification_send_toast"
         android:layout_below="@id/bt_launch_toast"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sample_notification" />
+        android:text="@string/bt_notification_toast_text" />
+    <View
+        android:id="@+id/separator_1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#61000000"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@id/bt_launch_notification_send_toast" />
+    <TextView
+        android:id="@+id/lbl_launch_notification_email"
+        android:layout_below="@id/separator_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mail_notification_label" />
+    <Button
+        android:id="@+id/bt_launch_notification_email"
+        android:layout_below="@id/lbl_launch_notification_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_notification_mail_text" />
 </RelativeLayout>

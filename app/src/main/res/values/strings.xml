@@ -4,11 +4,29 @@
     <string name="write_toast_label">Type a text and click on the button to launch a Toast</string>
     <string name="write_toast">Content of the toast</string>
     <string name="button_launch_toast">Toast!</string>
-    <string name="sample_notification">Sample notification</string>
+
+    <string name="bt_notification_toast_text">Notification Toast</string>
 
     <string name="bt_go_to_notifications">Notifications</string>
 
     <string name="launch_toast_notification_title">Toast</string>
     <string name="launch_toast_notification_text">You\'re allowed to launch a toast</string>
     <string name="launch_toast_action">Try it now!</string>
+
+    <string name="mail_notification_title">3 new emails</string>
+
+    <string name="mail_notification_label">Click the button to launch a 3 messages notification</string>
+    <string name="bt_notification_mail_text">Notification Email</string>
+
+    <string-array name="mail_senders">
+        <item>First Contact</item>
+        <item>Second Contact</item>
+        <item>Third Contact</item>
+    </string-array>
+
+    <string-array name="mail_preview">
+        <item>Lorem Ipsum</item>
+        <item>Dolor Sit</item>
+        <item>Amet Consectetur</item>
+    </string-array>
 </resources>
