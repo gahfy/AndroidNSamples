@@ -7,7 +7,6 @@ import android.app.RemoteInput;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
@@ -103,8 +102,8 @@ public class NotificationsActivity extends AppCompatActivity {
         Notification.InboxStyle inboxStyle =
                 new Notification.InboxStyle();
         inboxStyle.setBigContentTitle(getString(R.string.mail_notification_title));
-        for (int i=0; i < ACTIVITY_MAILS.length; i++) {
-            inboxStyle.addLine(String.format("%s - %s", ACTIVITY_MAILS[i].sender, ACTIVITY_MAILS[i].subject));
+        for(GahfyMail currentGahfyMail : ACTIVITY_MAILS) {
+            inboxStyle.addLine(String.format("%s - %s", currentGahfyMail.sender, currentGahfyMail.subject));
         }
         mBuilder.setStyle(inboxStyle);
 
