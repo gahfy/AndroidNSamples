@@ -17,6 +17,7 @@ import android.widget.EditText;
 
 import net.gahfy.nsamples.R;
 import net.gahfy.nsamples.receivers.LaunchToastReceiver;
+import net.gahfy.nsamples.utils.NVersionUtils;
 import net.gahfy.nsamples.utils.UIUtils;
 
 /**
@@ -137,7 +138,7 @@ public class NotificationsActivity extends AppCompatActivity {
                         .setContentTitle(getString(R.string.launch_toast_notification_title))
                         .setContentText(getString(R.string.launch_toast_notification_text));
 
-        if(Build.VERSION.RELEASE.startsWith("N") || Build.VERSION.RELEASE.startsWith("7")) {
+        if(NVersionUtils.isAtLeastN()) {
             // We instantiate a RemoteInput. We will be able to retrieved typed text with
             // the key NOTIFICATION_KEY_LAUNCH_TOAST
             RemoteInput remoteInput = new RemoteInput.Builder(NOTIFICATION_KEY_LAUNCH_TOAST)
