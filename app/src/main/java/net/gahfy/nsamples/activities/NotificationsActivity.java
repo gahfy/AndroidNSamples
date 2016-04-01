@@ -33,6 +33,9 @@ public class NotificationsActivity extends AppCompatActivity {
         new GahfyMail(3, "Gahfy", "News from the blog", "Amet Consectetur")
     };
 
+
+    private NotificationManager mNotificationManager;
+
     /** The identifier of the notification for Toast */
     public static final int NOTIFICATION_ID_LAUNCH_TOAST = 1;
     /** The identifier of the notification for Mails */
@@ -42,6 +45,9 @@ public class NotificationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+
+        // Setting the notification manager
+        mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         // Cancel all notifications related to this activity
         cancelNotifications();
@@ -93,15 +99,17 @@ public class NotificationsActivity extends AppCompatActivity {
      * Launches a notification to notify the user he received messages.
      */
     private void launchMailNotification(){
-        Notification.Builder mBuilder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_mail_white_24dp)
-                .setContentTitle(getString(R.string.mail_notification_title))
-                .setContentText(getString(R.string.mail_notification_title));
+        String mainNotificationTitle = String.format(getResources().getQuantityString(R.plurals.mail_notification_title, ACTIVITY_MAILS.length), ACTIVITY_MAILS.length);
+
+                Notification.Builder mBuilder = new Notification.Builder(this)
+                        .setSmallIcon(R.drawable.ic_mail_white_24dp)
+                        .setContentTitle(mainNotificationTitle)
+                        .setContentText(mainNotificationTitle);
 
         // Builds a multiline notification
         Notification.InboxStyle inboxStyle =
                 new Notification.InboxStyle();
-        inboxStyle.setBigContentTitle(getString(R.string.mail_notification_title));
+        inboxStyle.setBigContentTitle(mainNotificationTitle);
         for(GahfyMail currentGahfyMail : ACTIVITY_MAILS) {
             inboxStyle.addLine(String.format("%s - %s", currentGahfyMail.sender, currentGahfyMail.subject));
         }
@@ -122,7 +130,6 @@ public class NotificationsActivity extends AppCompatActivity {
         mBuilder.setContentIntent(resultPendingIntent);
 
         // Finally launching the notification
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(NOTIFICATION_ID_MAIL, UIUtils.buildNotification(mBuilder));
 
     }
@@ -172,7 +179,6 @@ public class NotificationsActivity extends AppCompatActivity {
         mBuilder.setContentIntent(resultPendingIntent);
 
         // Finally launching the notification
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(NOTIFICATION_ID_LAUNCH_TOAST, UIUtils.buildNotification(mBuilder));
     }
 
