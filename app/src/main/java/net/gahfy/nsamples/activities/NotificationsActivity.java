@@ -40,6 +40,11 @@ public class NotificationsActivity extends AppCompatActivity {
     public static final int NOTIFICATION_ID_LAUNCH_TOAST = 1;
     /** The identifier of the notification for Mails */
     public static final int NOTIFICATION_ID_MAIL = 2;
+    /** The base identifier, to which the id of mail will be added, for single mail notifications */
+    public static final int NOTIFICATION_ID_SINGLE_MAIL_BASE = 1000;
+
+    /** Unique key for the group of notifications */
+    private static final String GROUP_KEY_MAIL = "group_key_mail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,19 +106,25 @@ public class NotificationsActivity extends AppCompatActivity {
     private void launchMailNotification(){
         String mainNotificationTitle = String.format(getResources().getQuantityString(R.plurals.mail_notification_title, ACTIVITY_MAILS.length), ACTIVITY_MAILS.length);
 
-                Notification.Builder mBuilder = new Notification.Builder(this)
-                        .setSmallIcon(R.drawable.ic_mail_white_24dp)
-                        .setContentTitle(mainNotificationTitle)
-                        .setContentText(mainNotificationTitle);
+        Notification.Builder mBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_mail_white_24dp)
+                .setContentTitle(mainNotificationTitle)
+                .setContentText(mainNotificationTitle);
 
-        // Builds a multiline notification
-        Notification.InboxStyle inboxStyle =
-                new Notification.InboxStyle();
-        inboxStyle.setBigContentTitle(mainNotificationTitle);
-        for(GahfyMail currentGahfyMail : ACTIVITY_MAILS) {
-            inboxStyle.addLine(String.format("%s - %s", currentGahfyMail.sender, currentGahfyMail.subject));
+        if(NVersionUtils.isAtLeastN()){
+            mBuilder.setGroup(GROUP_KEY_MAIL);
+            mBuilder.setGroupSummary(true);
         }
-        mBuilder.setStyle(inboxStyle);
+        else {
+            // Builds a multiline notification
+            Notification.InboxStyle inboxStyle =
+                    new Notification.InboxStyle();
+            inboxStyle.setBigContentTitle(mainNotificationTitle);
+            for (GahfyMail currentGahfyMail : ACTIVITY_MAILS) {
+                inboxStyle.addLine(String.format("%s - %s", currentGahfyMail.sender, currentGahfyMail.subject));
+            }
+            mBuilder.setStyle(inboxStyle);
+        }
 
         // The activity that the notification will redirect to
         Intent resultIntent = new Intent(this, NotificationsActivity.class);
@@ -131,7 +142,16 @@ public class NotificationsActivity extends AppCompatActivity {
 
         // Finally launching the notification
         mNotificationManager.notify(NOTIFICATION_ID_MAIL, UIUtils.buildNotification(mBuilder));
-
+        if(NVersionUtils.isAtLeastN()) {
+            for (GahfyMail currentGahfyMail : ACTIVITY_MAILS) {
+                mBuilder = new Notification.Builder(this)
+                        .setSmallIcon(R.drawable.ic_mail_white_24dp)
+                        .setContentTitle(currentGahfyMail.sender)
+                        .setContentText(String.format("%s - %s", currentGahfyMail.subject, currentGahfyMail.preview));
+                mBuilder.setGroup(GROUP_KEY_MAIL);
+                mNotificationManager.notify(NOTIFICATION_ID_SINGLE_MAIL_BASE + (int) currentGahfyMail.id, UIUtils.buildNotification(mBuilder));
+            }
+        }
     }
 
     /**

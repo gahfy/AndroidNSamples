@@ -10,5 +10,5 @@
         <item quantity="one">%d nouvel email</item>
         <item quantity="other">%d nouveaux emails</item>
     </plurals>
-    <string name="mail_notification_label">Cliquez sur le bouton pour générer une notification "3 messages"</string>
+    <string name="mail_notification_label">Cliquez sur le bouton pour générer une notification 3 messages</string>
 </resources>
