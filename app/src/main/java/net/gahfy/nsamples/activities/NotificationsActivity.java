@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RemoteViews;
 
 import net.gahfy.nsamples.R;
 import net.gahfy.nsamples.receivers.LaunchToastReceiver;
@@ -119,9 +120,24 @@ public class NotificationsActivity extends AppCompatActivity {
         double amount = 12.34;
 
         Notification.Builder mBuilder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.ic_account_balance_white_24dp)
-                .setContentTitle(getString(R.string.bank_operation_notification_title))
-                .setContentText(getString(R.string.bank_operation_notification_text, amount));
+                .setSmallIcon(R.drawable.ic_account_balance_white_24dp);
+
+        if(NVersionUtils.isAtLeastN()) {
+            // Instantiate the RemoteViews with dedicated layout
+            RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.notification_bank_operation);
+            // Change the content of the TextView
+            remoteViews.setTextViewText(R.id.lbl_operation_amount, getString(R.string.bank_operation_custom_notification_amount_format, amount));
+            // Change the color of the TextView
+            remoteViews.setTextColor(R.id.lbl_operation_amount, getColor((amount >= 0.0) ? R.color.color_positive : R.color.color_negative));
+
+            // Finalize build of the notification
+            mBuilder.setStyle(new Notification.DecoratedCustomViewStyle())
+                    .setCustomContentView(remoteViews);
+        }
+        else{
+            mBuilder.setContentTitle(getString(R.string.bank_operation_notification_title))
+                    .setContentText(getString(R.string.bank_operation_notification_text, amount));
+        }
 
         // The activity that the notification will redirect to
         Intent resultIntent = new Intent(this, NotificationsActivity.class);
