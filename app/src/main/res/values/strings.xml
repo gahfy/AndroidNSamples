@@ -20,4 +20,9 @@
 
     <string name="mail_notification_label">Click the button to launch a 3 messages notification</string>
     <string name="bt_notification_mail_text">Notification Email</string>
+
+    <string name="bank_operation_notification_title">Bank Account XXX</string>
+    <string name="bank_operation_notification_text">New operation on your Bank Account : %.2f €</string>
+    <string name="bank_notification_label">Click the button to launch a bank operation notification</string>
+    <string name="bt_notification_bank_text">Notification Bank</string>
 </resources>

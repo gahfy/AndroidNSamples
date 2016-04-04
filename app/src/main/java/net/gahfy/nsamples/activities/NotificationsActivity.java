@@ -33,13 +33,15 @@ public class NotificationsActivity extends AppCompatActivity {
         new GahfyMail(3, "Gahfy", "News from the blog", "Amet Consectetur")
     };
 
-
+    /** The notification manager in use for this Activity*/
     private NotificationManager mNotificationManager;
 
     /** The identifier of the notification for Toast */
     public static final int NOTIFICATION_ID_LAUNCH_TOAST = 1;
     /** The identifier of the notification for Mails */
     public static final int NOTIFICATION_ID_MAIL = 2;
+    /** The identifier of the notification for Bank */
+    public static final int NOTIFICATION_ID_BANK = 3;
     /** The base identifier, to which the id of mail will be added, for single mail notifications */
     public static final int NOTIFICATION_ID_SINGLE_MAIL_BASE = 1000;
 
@@ -62,6 +64,7 @@ public class NotificationsActivity extends AppCompatActivity {
         Button btLaunchToast = (Button) findViewById(R.id.bt_launch_toast);
         Button btLaunchNotificationSendToast = (Button) findViewById(R.id.bt_launch_notification_send_toast);
         Button btLaunchNotificationEmail = (Button) findViewById(R.id.bt_launch_notification_email);
+        Button btLaunchNotificationBank = (Button) findViewById(R.id.bt_launch_notification_bank);
 
         // Setting the actions of the buttons
         if(btLaunchToast != null)
@@ -88,6 +91,14 @@ public class NotificationsActivity extends AppCompatActivity {
                     launchMailNotification();
                 }
             });
+
+        if(btLaunchNotificationBank != null)
+            btLaunchNotificationBank.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    launchBankOperationNotification();
+                }
+            });
     }
 
     /**
@@ -98,6 +109,34 @@ public class NotificationsActivity extends AppCompatActivity {
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(NOTIFICATION_ID_LAUNCH_TOAST);
         notificationManager.cancel(NOTIFICATION_ID_MAIL);
+        notificationManager.cancel(NOTIFICATION_ID_BANK);
+    }
+
+    /**
+     * Launches a notification to notify the user of a new operation on the bank account.
+     */
+    private void launchBankOperationNotification(){
+        Notification.Builder mBuilder = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.ic_account_balance_white_24dp)
+                .setContentTitle(getString(R.string.bank_operation_notification_title))
+                .setContentText(getString(R.string.bank_operation_notification_text, 12.34));
+
+        // The activity that the notification will redirect to
+        Intent resultIntent = new Intent(this, NotificationsActivity.class);
+
+        // The stackbuilder here allow to leave the application when pressing return
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addParentStack(NotificationsActivity.class);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        // Finally launching the notification
+        mNotificationManager.notify(NOTIFICATION_ID_BANK, UIUtils.buildNotification(mBuilder));
     }
 
     /**

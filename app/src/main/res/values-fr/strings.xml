@@ -11,4 +11,9 @@
         <item quantity="other">%d nouveaux emails</item>
     </plurals>
     <string name="mail_notification_label">Cliquez sur le bouton pour générer une notification 3 messages</string>
+
+    <string name="bank_operation_notification_title">Compte Bancaire XXX</string>
+    <string name="bank_notification_label">Cliquez sur le bouton pour générer une notification opération bancaire</string>
+    <string name="bank_operation_notification_text">Nouvelle opération sur votre compte bancaire : %.2f €</string>
+    <string name="bt_notification_bank_text">Notification Banque</string>
 </resources>
