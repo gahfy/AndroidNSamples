@@ -116,10 +116,12 @@ public class NotificationsActivity extends AppCompatActivity {
      * Launches a notification to notify the user of a new operation on the bank account.
      */
     private void launchBankOperationNotification(){
+        double amount = 12.34;
+
         Notification.Builder mBuilder = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.ic_account_balance_white_24dp)
                 .setContentTitle(getString(R.string.bank_operation_notification_title))
-                .setContentText(getString(R.string.bank_operation_notification_text, 12.34));
+                .setContentText(getString(R.string.bank_operation_notification_text, amount));
 
         // The activity that the notification will redirect to
         Intent resultIntent = new Intent(this, NotificationsActivity.class);
