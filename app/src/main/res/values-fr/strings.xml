@@ -22,4 +22,8 @@
 
     <string name="enable_notifications">Activer les Notifications</string>
     <string name="disable_notifications">Désactiver les Notifications</string>
+
+    <string name="tile_label">Notifications NSamples</string>
+    <string name="tile_label_enabled">Notifications Désactivées</string>
+    <string name="tile_label_disabled">Notifications Activées</string>
 </resources>

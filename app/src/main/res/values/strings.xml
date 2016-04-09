@@ -31,4 +31,8 @@
 
     <string name="enable_notifications">Enable Notifications</string>
     <string name="disable_notifications">Disable Notifications</string>
+
+    <string name="tile_label">NSamples Notifications</string>
+    <string name="tile_label_enabled">Notifications Disabled</string>
+    <string name="tile_label_disabled">Notifications Enabled</string>
 </resources>
