@@ -15,8 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.NotificationsActivity">
-        </activity>
+        <activity android:name=".activities.NotificationsActivity" />
+        <activity android:name=".activities.TileActivity" />
+
         <receiver android:name=".receivers.LaunchToastReceiver">
         </receiver>
     </application>

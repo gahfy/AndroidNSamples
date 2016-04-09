@@ -14,4 +14,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bt_go_to_notifications" />
+
+    <Button
+        android:id="@+id/bt_go_to_tiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bt_go_to_tiles"
+        android:layout_below="@id/bt_go_to_notifications" />
 </RelativeLayout>

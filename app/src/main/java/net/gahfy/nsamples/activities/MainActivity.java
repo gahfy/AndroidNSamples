@@ -19,12 +19,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button btGoToNotifications = (Button) findViewById(R.id.bt_go_to_notifications);
+        Button btGoToTiles = (Button) findViewById(R.id.bt_go_to_tiles);
 
         if(btGoToNotifications != null)
             btGoToNotifications.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+
+        if(btGoToTiles != null)
+            btGoToTiles.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, TileActivity.class);
                     startActivity(intent);
                 }
             });

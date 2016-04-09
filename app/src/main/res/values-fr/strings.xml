@@ -3,6 +3,8 @@
     <string name="write_toast">Contenu du toast</string>
     <string name="button_launch_toast">Toast !</string>
 
+    <string name="bt_go_to_tiles">Tiles - Paramètres rapides</string>
+
     <string name="launch_toast_notification_text">Vous pouvez générer un toast</string>
     <string name="launch_toast_action">Essayez !</string>
 
@@ -17,4 +19,7 @@
     <string name="bank_notification_label">Cliquez sur le bouton pour générer une notification opération bancaire</string>
     <string name="bank_operation_notification_text">Nouvelle opération : %.2f €</string>
     <string name="bt_notification_bank_text">Notification Banque</string>
+
+    <string name="enable_notifications">Activer les Notifications</string>
+    <string name="disable_notifications">Désactiver les Notifications</string>
 </resources>

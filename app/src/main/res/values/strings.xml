@@ -8,6 +8,7 @@
     <string name="bt_notification_toast_text">Notification Toast</string>
 
     <string name="bt_go_to_notifications">Notifications</string>
+    <string name="bt_go_to_tiles">Tiles - Quick Settings</string>
 
     <string name="launch_toast_notification_title">Toast</string>
     <string name="launch_toast_notification_text">You\'re allowed to launch a toast</string>
@@ -27,4 +28,7 @@
     <string name="bank_operation_custom_notification_amount_format">%.2f €</string>
     <string name="bank_notification_label">Click the button to launch a bank operation notification</string>
     <string name="bt_notification_bank_text">Notification Bank</string>
+
+    <string name="enable_notifications">Enable Notifications</string>
+    <string name="disable_notifications">Disable Notifications</string>
 </resources>
