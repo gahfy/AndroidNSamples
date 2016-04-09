@@ -1,7 +1,7 @@
 package net.gahfy.nsamples.activities;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -12,7 +12,7 @@ import net.gahfy.nsamples.utils.SharedPreferencesUtils;
 /**
  * This Activity shows the new features of Tiles
  */
-public class TileActivity extends AppCompatActivity{
+public class TileActivity extends Activity{
     /** The TextView with the details for editing the preferences. */
     private TextView lblChoosePreference;
 

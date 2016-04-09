@@ -1,5 +1,6 @@
 package net.gahfy.nsamples.activities;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,7 +10,6 @@ import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +23,7 @@ import net.gahfy.nsamples.utils.UIUtils;
 /**
  * This Activity shows the new features of Notifications
  */
-public class NotificationsActivity extends AppCompatActivity {
+public class NotificationsActivity extends Activity {
     /** The key of the typed text in the RemoteInput */
     public static final String NOTIFICATION_KEY_LAUNCH_TOAST = "toast_content";
 

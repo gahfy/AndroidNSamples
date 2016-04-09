@@ -18,8 +18,7 @@
         <activity android:name=".activities.NotificationsActivity" />
         <activity android:name=".activities.TileActivity" />
 
-        <receiver android:name=".receivers.LaunchToastReceiver">
-        </receiver>
+        <receiver android:name=".receivers.LaunchToastReceiver" />
     </application>
 
 </manifest>
